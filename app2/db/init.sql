@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS app2;
-CREATE TABLE IF NOT EXISTS app2.MyUsers ( firstname VARCHAR(30) NOT NULL,  lastname VARCHAR(30) NOT NULL);
-CREATE USER 'app2'@'%' identified by 'P@$$w0rd';
-GRANT ALL on app2.* to 'app2'@'%';
+CREATE DATABASE IF NOT EXISTS appdata;
+CREATE TABLE IF NOT EXISTS appdata.MyUsers ( firstname VARCHAR(30) NOT NULL,  lastname VARCHAR(30) NOT NULL);
+CREATE USER 'app'@'%' identified by 'P@$$w0rd';
+GRANT ALL on appdata.* to 'app'@'%';
