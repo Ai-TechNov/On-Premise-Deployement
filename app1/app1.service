@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 User=root
-Group=nginx
+Group=root
 WorkingDirectory=/app1
 Environment="PATH=/app1/app1env/bin"
 ExecStart=/app1/app1env/bin/gunicorn --workers 3 --bind=0.0.0.0:5000  wsgi
