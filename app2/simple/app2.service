@@ -7,8 +7,7 @@ After=network.target
 User=root
 Group=root
 WorkingDirectory=/app2
-Environment="PATH=/app2/app2env/bin"
-ExecStart=/app2/app2env/bin/gunicorn --workers 3 --bind=0.0.0.0:5000  wsgi
+ExecStart=gunicorn --access-logfile='app1.log'  --bind=0.0.0.0:8080  wsgi
 
 [Install]
 WantedBy=multi-user.target
