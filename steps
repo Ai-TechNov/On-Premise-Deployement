@@ -1,0 +1,46 @@
+- yum install mariadb-devel gcc* redhat-rpm-config python3-devel
+- mkdir /app1
+- cd /app1
+
+- vim main.py
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/app1")
+def hello():
+    return "Hello from App1"
+
+- vim wsgi.py
+
+from main import app as application
+app=application
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0',port=5001) 
+
+- pip3 install flask
+- pip3 install gunicorn
+- firewall-cmd --zone=public --add-port=5001/tcp --permanent
+- firewall-cmd --reload
+- gunicorn --bind=0.0.0.0:5001 wsgi
+
+- cd /etc/systemd/system/
+
+- vim app1.service
+
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/app1
+ExecStart=gunicorn --access-logfile='app1.log'  --bind=0.0.0.0:5001  wsgi
+
+[Install]
+WantedBy=multi-user.target
+
+- systemctl start app1
+
